@@ -1,23 +1,30 @@
-import { Navigate } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import React, {useEffect, useState} from 'react'
+import { deleteSpecimen, listSpecimens } from '../servicces/SpecimenService';
 
 const ListSpecimenComponent = () => {
 
     const [specimens, setSpecimens] = useState([])
 
-    // const navigator = useNavigate();
+    //  const navigator = useNavigate();
 
+    useEffect(() => {
+        getAllSpecimens();
+    }, [])
+    
     // useEffect(() => {
-    //     getAllSpecimens();
+    //     axios.get("http://localhost:8080/specimens")
+    //     .then((response) => setSpecimens(response.data));
     // }, [])
 
-    // function getAllSpecimens() {
-    //     listSpecimens().then((response) => {
-    //         setSpecimens(response.data);
-    //     }).catch(error => {
-    //         console.error(error);
-    //     })
-    // }
+    function getAllSpecimens() {
+        listSpecimens().then((response) => {
+            setSpecimens(response.data);
+        }).catch(error => {
+            console.error(error);
+        })
+    }
     // function addNewSpecimen(){
     //     navigator('/add-specimen')
     // }
@@ -44,6 +51,7 @@ const ListSpecimenComponent = () => {
         <table className='table table-striped table-bordered'>
             <thead>
                 <tr>
+                    {/* <th>id</th> */}
                                 <th>Программа</th>
                                 <th>Маркировка образца</th>
                                 <th>Стандарт испытания</th>
@@ -57,18 +65,20 @@ const ListSpecimenComponent = () => {
                 {
                     specimens.map(specimen => 
                         <tr key = {specimen.id}>
+                            {/* <td>{specimen.id}</td> */}
                         <td>{specimen.program}</td>
                 <td>{specimen.marking}</td>
                 <td>{specimen.standard}</td>
                 <td>{specimen.protocol}</td>
                 <td>{specimen.strength}</td>
                 <td>{specimen.module}</td>
-                            {/* <td>
-                                <button className='btn btn-info' onClick={() => updateSpecimen(specimen.id)}>Обновить</button>
-                                <button className='btn btn-danger' onClick={() => removeSpecimen(specimen.id)}
+                             <td>
+                                {/* <button className='btn btn-info' onClick={() => updateSpecimen(specimen.id)}>Обновить</button> */}
+                                {/* <button className='btn btn-danger' onClick={() => removeSpecimen(specimen.id) getAllSpecimens()} */}
+                                <button className='btn btn-danger' onClick={() => getAllSpecimens()}
                                     style={{marginLeft: '10px'}}
                                 >Удалить</button>
-                            </td> */}
+                            </td> 
                         </tr>)
                 }
             </tbody>

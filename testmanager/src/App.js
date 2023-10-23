@@ -13,6 +13,7 @@ function App() {
           <Routes>
             {/* // http://localhost:3000 */}
               <Route path='/' element = { <ListSpecimenComponent />}></Route>
+              <Route path='/specimens' element = { <ListSpecimenComponent /> }></Route>
           </Routes>
         <Footer />
       </BrowserRouter>

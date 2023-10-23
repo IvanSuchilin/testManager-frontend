@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Header() {
   return (
-    <heder>
+    <header>
              <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
                 <a className="navbar-brand" href="https://github.com/IvanSuchilin/testManager-frontend">Testmanager</a>
 
@@ -19,6 +19,6 @@ export default function Header() {
               </div>
 
             </nav>
-    </heder>
+    </header>
   )
 }
