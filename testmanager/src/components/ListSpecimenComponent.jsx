@@ -7,7 +7,7 @@ const ListSpecimenComponent = () => {
 
     const [specimens, setSpecimens] = useState([])
 
-    //  const navigator = useNavigate();
+     const navigator = useNavigate();
 
     useEffect(() => {
         getAllSpecimens();
@@ -33,21 +33,22 @@ const ListSpecimenComponent = () => {
     //     navigator(`/edit-specimen/${id}`)
     // }
 
-    // function removeSpecimen(id){
-    //     console.log(id);
+    function removeSpecimen(id){
+        console.log(id);
 
-    //     deleteSpecimen(id).then((response) =>{
-    //         getAllSpecimens();
-    //     }).catch(error => {
-    //         console.error(error);
-    //     })
-    // }
+        deleteSpecimen(id).then((response) =>{
+            getAllSpecimens();
+        }).catch(error => {
+            console.error(error);
+        })
+    }
 
   return (
     <div className='container'>
 
         <h2 className='text-center'>Список образцов</h2>
         {/* <button className='btn btn-primary mb-2' onClick={addNewSpecimen}>Добавить образец</button> */}
+        <button className='btn btn-primary mb-2' onClick={() => getAllSpecimens()}>Добавить образец</button>
         <table className='table table-striped table-bordered'>
             <thead>
                 <tr>
@@ -73,11 +74,14 @@ const ListSpecimenComponent = () => {
                 <td>{specimen.strength}</td>
                 <td>{specimen.module}</td>
                              <td>
-                                {/* <button className='btn btn-info' onClick={() => updateSpecimen(specimen.id)}>Обновить</button> */}
-                                {/* <button className='btn btn-danger' onClick={() => removeSpecimen(specimen.id) getAllSpecimens()} */}
-                                <button className='btn btn-danger' onClick={() => getAllSpecimens()}
-                                    style={{marginLeft: '10px'}}
+                             <div style={{ display: 'flex' }}>
+                                <button className='btn btn-info' onClick={() => getAllSpecimens()}style={{width: "100px",
+                                    height: "50px",}}>Обновить</button>
+                                <button className='btn btn-danger' onClick={() => removeSpecimen(specimen.id)}
+                                    style={{width: "100px",
+                                    height: "50px",}}
                                 >Удалить</button>
+                                </div>
                             </td> 
                         </tr>)
                 }
