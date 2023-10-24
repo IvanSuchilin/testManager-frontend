@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import React, {useEffect, useState} from 'react'
 import { deleteSpecimen, listSpecimens } from '../servicces/SpecimenService';
@@ -25,6 +24,10 @@ const ListSpecimenComponent = () => {
             console.error(error);
         })
     }
+
+    function switchToPrograms() {
+        navigator(`/program`, )
+    }
     // function addNewSpecimen(){
     //     navigator('/add-specimen')
     // }
@@ -48,12 +51,12 @@ const ListSpecimenComponent = () => {
 
         <h2 className='text-center'>Список образцов</h2>
         {/* <button className='btn btn-primary mb-2' onClick={addNewSpecimen}>Добавить образец</button> */}
-        <button className='btn btn-primary mb-2' onClick={() => getAllSpecimens()}>Добавить образец</button>
+        <button className='btn btn-primary mb-2' onClick={() => switchToPrograms()}>Все программы</button>
         <table className='table table-striped table-bordered'>
             <thead>
                 <tr>
                     {/* <th>id</th> */}
-                                <th>Программа</th>
+                                <th>Программа испытаний</th>
                                 <th>Маркировка образца</th>
                                 <th>Стандарт испытания</th>
                                 <th>Номер протокола испытания</th>

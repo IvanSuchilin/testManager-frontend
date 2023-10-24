@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import ListSpecimenComponent from "./components/ListSpecimenComponent";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
+import ListProgramComponent from "./components/ListProgramComponent";
 
 
 function App() {
@@ -12,8 +13,9 @@ function App() {
         <Header />
           <Routes>
             {/* // http://localhost:3000 */}
-              <Route path='/' element = { <ListSpecimenComponent />}></Route>
+              {/* <Route path='/' element = { <ListSpecimenComponent />}></Route> */}
               <Route path='/specimens' element = { <ListSpecimenComponent /> }></Route>
+              <Route path='/program' element = { <ListProgramComponent /> }></Route>
           </Routes>
         <Footer />
       </BrowserRouter>
