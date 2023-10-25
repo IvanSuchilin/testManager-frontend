@@ -24,9 +24,11 @@ const ListProgramComponent = () => {
             console.error(error);
         })
     }
-    // function addNewSpecimen(){
-    //     navigator('/add-specimen')
-    // }
+    function addNewSpecimen(id){
+        //navigator('/program/' + id + '/' + 'add-specimen')
+        navigator(`/program/${id}/add-specimen`)
+        console.log(id)
+    }
 
     // function updateSpecimen(id) {
     //     navigator(`/edit-specimen/${id}`)
@@ -74,7 +76,7 @@ const ListProgramComponent = () => {
                                     style={{width: "100px",
                                     height: "50px",}}
                                 >Удалить</button>
-                                  <button className='btn btn-primary mb-2' onClick={() => getAllPrograms()}style={{width: "170px",
+                                  <button className='btn btn-primary mb-2' onClick={() => addNewSpecimen(program.id)}style={{width: "170px",
                                     height: "50px",}}>Добавить образец</button>
                                 </div>
                             </td> 
