@@ -14,7 +14,7 @@ function App() {
         <Header />
           <Routes>
             {/* // http://localhost:3000 */}
-              {/* <Route path='/' element = { <ListSpecimenComponent />}></Route> */}
+              <Route path='/' element = { <ListSpecimenComponent />}></Route>
               <Route path='/specimens' element = { <ListSpecimenComponent /> }></Route>
               <Route path='/program' element = { <ListProgramComponent /> }></Route>
               <Route path='/program/:id/add-specimen' element = { <SpecimenComponent /> }></Route>

@@ -20,7 +20,6 @@ const SpecimenComponent = () => {
 
     function validateForm(){
         let valid = true;
-
         const errorsCopy = {... errors}
 
         if(marking.trim()){
@@ -64,8 +63,7 @@ const SpecimenComponent = () => {
     function saveOrUpdateSpecimen(e){
         e.preventDefault();
 
-        if(validateForm()){
-
+       if(validateForm()){
             const specimen = {marking, standard, protocol}
             console.log(specimen)
 
@@ -84,15 +82,15 @@ const SpecimenComponent = () => {
             //         console.error(error);
             //     })
             // }
-
-            addNewSpecimen(e,specimen).then((response) => {
+            addNewSpecimen(id,specimen).then((response) => {
                 console.log(response.data);
                 navigator('/specimens')
             }).catch(error => {
                 console.error(error);
             })
-        }
+       }
     }
+
 
   return (
     <div className='container'>
@@ -162,7 +160,7 @@ const SpecimenComponent = () => {
                                     value={this.state.module} onChange={this.changeModuleHandler}/>
                                 </div> */}
 
-                        <button className='btn btn-success' onClick={saveOrUpdateSpecimen()} >Подтвердить</button>
+                        <button className='btn btn-success' onClick={saveOrUpdateSpecimen} >Подтвердить</button>
                     </form>
 
                 </div>
