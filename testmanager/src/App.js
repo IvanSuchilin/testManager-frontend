@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
 import ListProgramComponent from "./components/ListProgramComponent";
 import SpecimenComponent from "./components/SpecimenComponent";
+import ProgramComponent from "./components/ProgramComponent";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
               <Route path='/specimens' element = { <ListSpecimenComponent /> }></Route>
               <Route path='/program' element = { <ListProgramComponent /> }></Route>
               <Route path='/program/:id/add-specimen' element = { <SpecimenComponent /> }></Route>
+              <Route path='/add-program' element = { <ProgramComponent /> }></Route>
           </Routes>
         <Footer />
       </BrowserRouter>
