@@ -20,6 +20,7 @@ function App() {
               <Route path='/program' element = { <ListProgramComponent /> }></Route>
               <Route path='/program/:id/add-specimen' element = { <SpecimenComponent /> }></Route>
               <Route path='/add-program' element = { <ProgramComponent /> }></Route>
+              <Route path='/edit-program/:id' element = { <ProgramComponent /> }></Route>
           </Routes>
         <Footer />
       </BrowserRouter>

@@ -167,7 +167,7 @@ const SpecimenComponent = () => {
                                     className='form-control'
                                     onChange={(e) => setModule(e.target.value)} />
                             </div>
-
+                            <br /> <br />
                             <button className='btn btn-success' onClick={saveOrUpdateSpecimen} >Подтвердить</button>
                             <button className='btn btn-danger' onClick={goBack}>Отмена</button>
                         </form>

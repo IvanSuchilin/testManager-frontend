@@ -34,9 +34,9 @@ const ListProgramComponent = () => {
 navigator('/add-program')
     }
 
-    // function updateSpecimen(id) {
-    //     navigator(`/edit-specimen/${id}`)
-    // }
+    function updateProgram(id) {
+        navigator(`/edit-program/${id}`)
+    }
 
     function switchToSpecimens() {
         navigator(`/specimens`)
@@ -82,7 +82,7 @@ navigator('/add-program')
                                 <td>{program.annotation}</td>
                                 <td>
                                     <div style={{ display: 'flex' }}>
-                                        <button className='btn btn-info' onClick={() => getAllPrograms()} style={{
+                                        <button className='btn btn-info' onClick={() => updateProgram(program.id)} style={{
                                             width: "100px",
                                             height: "50px",
                                         }}>Изменить</button>
