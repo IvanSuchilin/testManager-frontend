@@ -21,6 +21,7 @@ function App() {
               <Route path='/program/:id/add-specimen' element = { <SpecimenComponent /> }></Route>
               <Route path='/add-program' element = { <ProgramComponent /> }></Route>
               <Route path='/edit-program/:id' element = { <ProgramComponent /> }></Route>
+              <Route path='/edit-specimen/:id' element = { <SpecimenComponent/> }></Route>
           </Routes>
         <Footer />
       </BrowserRouter>

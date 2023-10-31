@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, useLocation } from "react-router-dom"
 import { addNewSpecimen } from "../servicces/ProgramService"
+import { updateSpecimen } from "../servicces/SpecimenService"
 
 const SpecimenComponent = () => {
     const [marking, setMarking] = useState('')
@@ -8,7 +9,7 @@ const SpecimenComponent = () => {
     const [protocol, setProtocol] = useState('')
     const [strength, setStrength] = useState('')
     const [module, setModule] = useState('')
-
+const location = useLocation();
     const { id } = useParams();
     const [errors, setErrors] = useState({
         marking: '',
@@ -50,38 +51,31 @@ const SpecimenComponent = () => {
     }
 
     function pageTitle() {
-        return <h2 className='text-center'>Добавить образец</h2>
-        // if(id){
-        //     return <h2 className='text-center'>Обновить данные по образцу</h2>
-        // }else{
-        //     return <h2 className='text-center'>Добавить образец</h2>
-        // }
+        if(location.pathname.substring(0,5) === '/edit'){
+            return <h2 className='text-center'>Обновить данные по образцу</h2>
+        }else{
+            return <h2 className='text-center'>Добавить образец</h2>
+        }
     }
-    // function saverUpdateSpecimen() {
-
-    // }
+  
     function saveOrUpdateSpecimen(e) {
         e.preventDefault();
-
-        if (validateForm()) {
-            const specimen = { marking, standard, protocol, strength, module }
+            // const specimen = { marking, standard, protocol, strength, module }
+            // console.log(specimen)
+            if(location.pathname.substring(0,5) === '/edit'){
+                const specimenUpdDto = { marking, standard, protocol, strength, module }
+                console.log(specimenUpdDto)
+                updateSpecimen(id, specimenUpdDto).then((response) => {
+                    console.log(response.data);
+                    navigator('/specimens');
+                }).catch(error => {
+                    console.error(error);
+                })
+            } else {
+        
+            if (validateForm()) {
+                const specimen = { marking, standard, protocol, strength, module }
             console.log(specimen)
-
-            // if(id){
-            //     updateSpecimen(id, specimen).then((response) => {
-            //         console.log(response.data);
-            //         navigator('/');
-            //     }).catch(error => {
-            //         console.error(error);
-            //     })
-            // } else {
-            //     addNewSpecimen(specimen).then((response) => {
-            //         console.log(response.data);
-            //         navigator('/')
-            //     }).catch(error => {
-            //         console.error(error);
-            //     })
-            // }
             addNewSpecimen(id, specimen).then((response) => {
                 console.log(response.data);
                 navigator('/specimens')
@@ -89,6 +83,8 @@ const SpecimenComponent = () => {
                 console.error(error);
             })
         }
+    }
+        
     }
 
     function goBack(){

@@ -32,9 +32,9 @@ const ListSpecimenComponent = () => {
     //     navigator('/add-specimen')
     // }
 
-    // function updateSpecimen(id) {
-    //     navigator(`/edit-specimen/${id}`)
-    // }
+    function updateSpecimen(id) {
+        navigator(`/edit-specimen/${id}`)
+    }
 
     function removeSpecimen(id) {
         console.log(id);
@@ -78,7 +78,7 @@ const ListSpecimenComponent = () => {
                                 <td>{specimen.module}</td>
                                 <td>
                                     <div style={{ display: 'flex' }}>
-                                        <button className='btn btn-info' onClick={() => getAllSpecimens()} style={{
+                                        <button className='btn btn-info' onClick={() => updateSpecimen(specimen.id)} style={{
                                             width: "100px",
                                             height: "50px",
                                         }}>Изменить</button>
