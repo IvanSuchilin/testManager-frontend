@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import { deleteProgram, listPrograms } from '../servicces/ProgramService';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ListProgramComponent = () => {
 
@@ -37,9 +39,10 @@ navigator('/add-program')
 
     function removeProgram(id) {
         console.log(id);
-
         deleteProgram(id).then((response) => {
+            toast.success('Программа успешно удалена')
             getAllPrograms();
+
         }).catch(error => {
             console.error(error);
         })

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate, useParams, useLocation } from "react-router-dom"
 import { addNewSpecimen } from "../servicces/ProgramService"
 import { updateSpecimen } from "../servicces/SpecimenService"
+import { toast } from 'react-toastify'
 
 const SpecimenComponent = () => {
     // const [program, setProgram] = useState('')
@@ -67,8 +68,24 @@ const SpecimenComponent = () => {
             updateSpecimen(id, specimenUpdDto).then((response) => {
                 console.log(response.data);
                 navigator('/specimens');
+                toast.success('Образец обновлен успешно')
             }).catch(error => {
                 console.error(error);
+                if (error.response) {
+                    switch (error.response.status) {
+                        case 409:
+                            toast.error(error.response.data.message);
+                            toast.error(error.response.data.reason);
+                            break;
+                        case 404:
+                            toast.error('Не удалось найти данные!');
+                            break;
+                        default:
+                            toast.error(`Неизвестная ошибка! (статус: ${error.response.status})`);
+                    }
+                } else {
+                    toast.error(error.response.data.message);
+                }
             })
         } else {
 
@@ -78,8 +95,27 @@ const SpecimenComponent = () => {
                 addNewSpecimen(id, specimen).then((response) => {
                     console.log(response.data);
                     navigator('/specimens')
+                    toast.success('Образец добавлен успешно')
                 }).catch(error => {
                     console.error(error);
+                    if (error.response) {
+                        // если ошибка связана с запросами к API, выводим уведомление
+                        switch (error.response.status) {
+                            case 409:
+                                toast.error(error.response.data.message);
+                                toast.error(error.response.data.reason);
+                                break;
+                            case 404:
+                                toast.error('Не удалось найти данные!');
+                                break;
+                            default:
+                                // если статус ошибки не равен 401 или 404, выводим общее уведомление
+                                toast.error(`Неизвестная ошибка! (статус: ${error.response.status})`);
+                        }
+                    } else {
+                        // в случае других ошибок выводим общее сообщение
+                        toast.error('Произошла неизвестная ошибка!');
+                    }
                 })
             }
         }

@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { addNewProgram, updateProgram } from "../servicces/ProgramService";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const ProgramComponent = () => {
     const [number, setNumber] = useState('')
@@ -43,20 +44,51 @@ const ProgramComponent = () => {
             updateProgram(id, program).then((response) => {
                 console.log(response.data);
                 navigator('/program')
+                toast.success('Программа успешно обновлена')
             }).catch(error => {
                 console.error(error);
+                if (error.response) {
+                    switch (error.response.status) {
+                        case 409:
+                            toast.error(error.response.data.message);
+                            toast.error(error.response.data.reason);
+                            break;
+                        case 404:
+                            toast.error('Не удалось найти данные!');
+                            break;
+                        default:
+                            toast.error(`Неизвестная ошибка! (статус: ${error.response.status})`);
+                    }
+                } else {
+                    toast.error(error.response.data.message);
+                }
             })
 
         } else {
             if (validateForm()) {
-
                 const program = { number, annotation }
                 console.log(program)
                 addNewProgram(program).then((response) => {
                     console.log(response.data);
                     navigator('/program')
+                    toast.success('Программа успешно добавлена')
                 }).catch(error => {
                     console.error(error);
+                    if (error.response) {
+                        switch (error.response.status) {
+                            case 409:
+                                toast.error(error.response.data.message);
+                                toast.error(error.response.data.reason);
+                                break;
+                            case 404:
+                                toast.error('Не удалось найти данные!');
+                                break;
+                            default:
+                                toast.error(`Неизвестная ошибка! (статус: ${error.response.status})`);
+                        }
+                    } else {
+                        toast.error(error.response.data.message);
+                    }
                 })
             }
         }

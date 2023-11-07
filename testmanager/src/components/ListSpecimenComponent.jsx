@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import { deleteSpecimen, listSpecimens } from '../servicces/SpecimenService';
+import { toast } from "react-toastify";
 
 const ListSpecimenComponent = () => {
 
@@ -33,6 +34,7 @@ const ListSpecimenComponent = () => {
 
         deleteSpecimen(id).then((response) => {
             getAllSpecimens();
+            toast.success('Образец успешно удален')
         }).catch(error => {
             console.error(error);
         })
