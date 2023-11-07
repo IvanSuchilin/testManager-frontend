@@ -5,7 +5,7 @@ import { useState } from "react";
 const ProgramComponent = () => {
     const [number, setNumber] = useState('')
     const [annotation, setAnnotation] = useState('')
-    const {id} = useParams()
+    const { id } = useParams()
     const [errors, setErrors] = useState({
         number: '',
         annotation: ''
@@ -37,28 +37,28 @@ const ProgramComponent = () => {
         const program = { number, annotation }
         console.log(program)
 
-            if (id){
-                const program = { number, annotation }
-            console.log(program)
-                updateProgram(id, program).then((response) => {
-                    console.log(response.data);
-                    navigator('/program')
-                }).catch(error => {
-                    console.error(error);
-                })
-                
-            } else {
-        if (validateForm()) {
-
+        if (id) {
             const program = { number, annotation }
             console.log(program)
-            addNewProgram(program).then((response) => {
+            updateProgram(id, program).then((response) => {
                 console.log(response.data);
                 navigator('/program')
             }).catch(error => {
                 console.error(error);
             })
-        }
+
+        } else {
+            if (validateForm()) {
+
+                const program = { number, annotation }
+                console.log(program)
+                addNewProgram(program).then((response) => {
+                    console.log(response.data);
+                    navigator('/program')
+                }).catch(error => {
+                    console.error(error);
+                })
+            }
         }
     }
 
@@ -67,7 +67,6 @@ const ProgramComponent = () => {
     }
 
     function pageTitle() {
-        // return <h2 className='text-center'>Добавить образец</h2>
         if (id) {
             return <h2 className='text-center'>Редактировать данные по программе</h2>
         } else {
@@ -81,7 +80,6 @@ const ProgramComponent = () => {
             <div className='row'>
                 <div className='card col-md-6 offset-md-3 offset-md-3'>
                     {
-                        // <h2 className='text-center'>Добавление программы</h2>
                         pageTitle()
                     }
                     <div className='card-body'>

@@ -12,11 +12,6 @@ const ListProgramComponent = () => {
         getAllPrograms();
     }, [])
 
-    // useEffect(() => {
-    //     axios.get("http://localhost:8080/specimens")
-    //     .then((response) => setSpecimens(response.data));
-    // }, [])
-
     function getAllPrograms() {
         listPrograms().then((response) => {
             setPrograms(response.data);
@@ -25,9 +20,7 @@ const ListProgramComponent = () => {
         })
     }
     function addNewSpecimen(id) {
-        //navigator('/program/' + id + '/' + 'add-specimen')
         navigator(`/program/${id}/add-specimen`)
-        // console.log(id)
     }
 
     function addNewProgram() {

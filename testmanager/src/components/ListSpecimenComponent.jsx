@@ -12,11 +12,6 @@ const ListSpecimenComponent = () => {
         getAllSpecimens();
     }, [])
 
-    // useEffect(() => {
-    //     axios.get("http://localhost:8080/specimens")
-    //     .then((response) => setSpecimens(response.data));
-    // }, [])
-
     function getAllSpecimens() {
         listSpecimens().then((response) => {
             setSpecimens(response.data);
@@ -28,9 +23,6 @@ const ListSpecimenComponent = () => {
     function switchToPrograms() {
         navigator(`/program`,)
     }
-    // function addNewSpecimen(){
-    //     navigator('/add-specimen')
-    // }
 
     function updateSpecimen(id) {
         navigator(`/edit-specimen/${id}`)
@@ -50,12 +42,10 @@ const ListSpecimenComponent = () => {
         <div className='container'>
 
             <h2 className='text-center'>Список образцов</h2>
-            {/* <button className='btn btn-primary mb-2' onClick={addNewSpecimen}>Добавить образец</button> */}
             <button className='btn btn-primary mb-2' onClick={() => switchToPrograms()}>Все программы</button>
             <table className='table table-striped table-bordered'>
                 <thead>
                     <tr>
-                        {/* <th>id</th> */}
                         <th>Программа испытаний</th>
                         <th>Маркировка образца</th>
                         <th>Стандарт испытания</th>
@@ -69,7 +59,6 @@ const ListSpecimenComponent = () => {
                     {
                         specimens.map(specimen =>
                             <tr key={specimen.id}>
-                                {/* <td>{specimen.id}</td> */}
                                 <td>{specimen.program}</td>
                                 <td>{specimen.marking}</td>
                                 <td>{specimen.standard}</td>

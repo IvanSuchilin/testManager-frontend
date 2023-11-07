@@ -4,12 +4,13 @@ import { addNewSpecimen } from "../servicces/ProgramService"
 import { updateSpecimen } from "../servicces/SpecimenService"
 
 const SpecimenComponent = () => {
+    // const [program, setProgram] = useState('')
     const [marking, setMarking] = useState('')
     const [standard, setStandard] = useState('')
     const [protocol, setProtocol] = useState('')
     const [strength, setStrength] = useState('')
     const [module, setModule] = useState('')
-const location = useLocation();
+    const location = useLocation();
     const { id } = useParams();
     const [errors, setErrors] = useState({
         marking: '',
@@ -51,46 +52,43 @@ const location = useLocation();
     }
 
     function pageTitle() {
-        if(location.pathname.substring(0,5) === '/edit'){
+        if (location.pathname.substring(0, 5) === '/edit') {
             return <h2 className='text-center'>Обновить данные по образцу</h2>
-        }else{
+        } else {
             return <h2 className='text-center'>Добавить образец</h2>
         }
     }
-  
+
     function saveOrUpdateSpecimen(e) {
         e.preventDefault();
-            // const specimen = { marking, standard, protocol, strength, module }
-            // console.log(specimen)
-            if(location.pathname.substring(0,5) === '/edit'){
-                const specimenUpdDto = { marking, standard, protocol, strength, module }
-                console.log(specimenUpdDto)
-                updateSpecimen(id, specimenUpdDto).then((response) => {
-                    console.log(response.data);
-                    navigator('/specimens');
-                }).catch(error => {
-                    console.error(error);
-                })
-            } else {
-        
-            if (validateForm()) {
-                const specimen = { marking, standard, protocol, strength, module }
-            console.log(specimen)
-            addNewSpecimen(id, specimen).then((response) => {
+        if (location.pathname.substring(0, 5) === '/edit') {
+            const specimenUpdDto = { marking, standard, protocol, strength, module }
+            console.log(specimenUpdDto)
+            updateSpecimen(id, specimenUpdDto).then((response) => {
                 console.log(response.data);
-                navigator('/specimens')
+                navigator('/specimens');
             }).catch(error => {
                 console.error(error);
             })
+        } else {
+
+            if (validateForm()) {
+                const specimen = { marking, standard, protocol, strength, module }
+                console.log(specimen)
+                addNewSpecimen(id, specimen).then((response) => {
+                    console.log(response.data);
+                    navigator('/specimens')
+                }).catch(error => {
+                    console.error(error);
+                })
+            }
         }
-    }
-        
+
     }
 
-    function goBack(){
+    function goBack() {
         navigator('/specimens')
     }
-
 
     return (
         <div className='container'>
@@ -103,6 +101,7 @@ const location = useLocation();
                     <div className='card-body'>
                         <form>
                             <div className='form-group mb-2'>
+
                                 <label className='form-label'>Маркировка образца:</label>
                                 <input
                                     type='text'
@@ -163,6 +162,7 @@ const location = useLocation();
                                     className='form-control'
                                     onChange={(e) => setModule(e.target.value)} />
                             </div>
+
                             <br /> <br />
                             <button className='btn btn-success' onClick={saveOrUpdateSpecimen} >Подтвердить</button>
                             <button className='btn btn-danger' onClick={goBack}>Отмена</button>
